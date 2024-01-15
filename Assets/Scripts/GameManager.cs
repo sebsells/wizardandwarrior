@@ -60,11 +60,15 @@ public class GameManager : MonoBehaviour
                     gameOverUI.SetActive(false); // Hide game over UI
                     foreach (GameObject go in hideOnGameOver)
                     {
-                        go.SetActive(true);
                         if (go.GetComponent<Character>() != null)
                         {
                             go.GetComponent<Character>().Reset(); // Reset characters back to normal
                         }
+                        else if (go.GetComponent<ProjectilePoolController>() != null)
+                        {
+                            go.GetComponent<ProjectilePoolController>().DeactivateAll();
+                        }
+                        go.SetActive(true);
                     }
 
                     gameOverTime = 0f;
