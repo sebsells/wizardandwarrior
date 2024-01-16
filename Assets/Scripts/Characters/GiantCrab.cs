@@ -110,7 +110,7 @@ public class GiantCrab : Boss
                 }
 
                 // Activate projectile
-                projectile.GetComponent<AimedProjectile>().AimedActivate(projectileSpawn.position, target);
+                projectile.GetComponent<AimedProjectile>().AimedActivate(gameObject, projectileSpawn.position, target);
 
                 // Play audio
                 audioSource[1].clip = clawAttackSound;
@@ -138,7 +138,7 @@ public class GiantCrab : Boss
             if (projectile != null)
             {
                 Vector3 spawnPos = new Vector3(projectileSpawn.position.x, Random.Range(3f, -6f), 0);
-                projectile.Activate(spawnPos);
+                projectile.Activate(gameObject, spawnPos);
 
                 audioSource[1].clip = waterAttackSound;
                 audioSource[1].Play();
@@ -177,7 +177,7 @@ public class GiantCrab : Boss
                     List<Projectile> projectiles = GetNextProjectiles(sandProjectiles, sandBurstSize);
                     foreach (Projectile projectile in projectiles)
                     {
-                        projectile.Activate(projectileSpawn.position);
+                        projectile.Activate(gameObject, projectileSpawn.position);
                     }
                 }
                 // Under half = 1 projectile is replaced by claw projectile
@@ -187,11 +187,11 @@ public class GiantCrab : Boss
                     List<Projectile> projectiles = GetNextProjectiles(sandProjectiles, sandBurstSize - 1);
                     foreach (Projectile projectile in projectiles)
                     {
-                        projectile.Activate(projectileSpawn.position);
+                        projectile.Activate(gameObject, projectileSpawn.position);
                     }
 
                     Projectile clawProjectile = GetNextProjectile(clawProjectiles);
-                    clawProjectile.GetComponent<AimedProjectile>().AimedActivate(projectileSpawn.position, Random.Range(0, 2));
+                    clawProjectile.GetComponent<AimedProjectile>().AimedActivate(gameObject, projectileSpawn.position, Random.Range(0, 2));
                 }
 
                 // Play sound effect

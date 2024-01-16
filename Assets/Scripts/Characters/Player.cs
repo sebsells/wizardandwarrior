@@ -131,7 +131,7 @@ public class Player : Character
         Projectile projectile = GetNextProjectile(lightProjectilePool); // Get next available projectile from pool
         if (projectile != null)
         {
-            projectile.Activate(projectileSpawn.position); // Activate projectile
+            projectile.Activate(gameObject, projectileSpawn.position); // Activate projectile
             resource -= lightResource; // Take away resource
 
             animator.Play(animAttack); // Play hit animation
@@ -147,7 +147,7 @@ public class Player : Character
         Projectile projectile = GetNextProjectile(heavyProjectilePool); // Get next available projectile from pool
         if (projectile != null)
         {
-            projectile.Activate(projectileSpawn.position); // Activate projectile
+            projectile.Activate(gameObject, projectileSpawn.position); // Activate projectile
             resource -= heavyResource; // Take away resource
 
             animator.Play(animAttack); // Play hit animation
@@ -168,9 +168,16 @@ public class Player : Character
             // Effectively makes it so player must press the key again if exchanging is interrupted by something
             if ((Input.GetKey(keys.exchange) && isExchanging) || (Input.GetKeyDown(keys.exchange) && !isExchanging))
             {
+                // Get resource amounts
+                float resourceTaken = Time.deltaTime * exchangeSpeed;
+                float resourceGiven = resourceTaken * exchangeRate;
+
                 // Exchange resources
-                resource -= Time.deltaTime * exchangeSpeed;
-                otherPlayer.GiveResource(Time.deltaTime * exchangeRate * exchangeSpeed);
+                resource -= resourceTaken;
+                otherPlayer.GiveResource(resourceGiven);
+
+                // Track stat
+                GameManager.instance.AddExchangeStat(resourceGiven);
 
                 isExchanging = true;
             }

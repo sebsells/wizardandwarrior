@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 2469257450618184441}
   - component: {fileID: 404132119969315480}
   - component: {fileID: 4144071678330000374}
+  - component: {fileID: 4275865712527547406}
   m_Layer: 3
   m_Name: GiantCrab
   m_TagString: Untagged
@@ -531,7 +532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   moveSpeed: 5
-  hurtSound: {fileID: 8300000, guid: 5e0580a846c0ac1499350030099675e8, type: 3}
+  hurtSound: {fileID: 8300000, guid: bfeaf78c230278c4b90d1dc55b793979, type: 3}
   deathSound: {fileID: 8300000, guid: 93de96d746500bf4eb158789f574fba7, type: 3}
   clawProjectiles: []
   waterProjectiles: []
@@ -543,3 +544,16 @@ MonoBehaviour:
   waterAttackSound: {fileID: 8300000, guid: f9ce3697f3e82c942b8f6d01087251ef, type: 3}
   sandAttackSound: {fileID: 8300000, guid: caa89542e1223544aa709145ca82de47, type: 3}
   attackAnimation: GiantCrabAttack
+--- !u!114 &4275865712527547406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7371892115903853807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92358c86c4fac14a8e8d3d945d3a4b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMusic: 0

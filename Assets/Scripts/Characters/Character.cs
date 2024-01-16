@@ -11,7 +11,7 @@ public class Character : MonoBehaviour
     protected SpriteRenderer spriteRenderer = null;
 
     public float health { get; protected set; } // Current health
-    [SerializeField] protected float maxHealth; // Starting/max health
+    public float maxHealth; // Starting/max health
     public bool isDead { get; protected set; } = false; // True if dead
 
     [SerializeField] protected float moveSpeed; // Movement speed
@@ -93,6 +93,6 @@ public class Character : MonoBehaviour
         isDead = false; // No longer dead
         health = maxHealth; // Reset health
         transform.position = startingPosition; // Move back to starting position
-        animator.speed = 1f; // Reset animator speed in case any animations were paused
+        if (animator != null) animator.speed = 1f; // Reset animator speed in case any animations were paused
     }
 }

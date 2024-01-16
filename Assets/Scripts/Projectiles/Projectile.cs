@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     public bool isActive = false; // True if projectile is moving and can damage characters
     public bool isFriendly; // True if projectile was fired from player
+    private GameObject shooter; // Game object that shot this projectile
     [SerializeField] protected bool destroyOnHit; // True if projectile is destroyed when hitting something
 
     [SerializeField] protected float speed; // Speed that the projectile moves
@@ -46,14 +47,15 @@ public class Projectile : MonoBehaviour
             // Check if projectile has hit it's intended target (player or boss)
             if (!isFriendly && collision.GetComponent<Player>() != null || isFriendly && collision.GetComponent<Boss>() != null)
             {
-                bool killedTarget;
-                killedTarget = collision.GetComponent<Character>().Damage(damage); // Damage character that was hit
+                bool killedTarget = collision.GetComponent<Character>().Damage(damage); // Damage character that was hit
 
-                if (killedTarget && !GameManager.instance.gameOver)
+                GameManager.instance.AddDamageStat(shooter, damage); // Track damage stat
+
+                if (killedTarget && GameManager.instance.gameState == GameState.Playing)
                 {
                     GameManager.instance.GameOver(collision.gameObject, gameObject, transform.parent); // Game over if killed player
                     moveDirection = Vector3.zero; // Stop projectile from moving
-                    startTime -= 2f; // Make sure projectile isn't deactivated during gameover sequence
+                    startTime += 2f; // Make sure projectile isn't deactivated during gameover sequence
                 }
                 else if (destroyOnHit)
                 {
@@ -63,7 +65,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public virtual void Activate(Vector3 position)
+    public virtual void Activate(GameObject a_shooter, Vector3 position)
     {
         gameObject.SetActive(true);
 
@@ -73,6 +75,8 @@ public class Projectile : MonoBehaviour
         startTime = Time.time;
 
         moveDirection = isFriendly ? Vector3.right : Vector3.left;
+
+        shooter = a_shooter;
     }
 
     public virtual void Deactivate()

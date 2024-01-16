@@ -6,9 +6,9 @@ public class RandomAngleProjectile : Projectile
 {
     [SerializeField] float angleRange = 0.33f;
 
-    public override void Activate(Vector3 position)
+    public override void Activate(GameObject a_shooter, Vector3 position)
     {
-        base.Activate(position);
+        base.Activate(a_shooter, position);
 
         // Random angle
         moveDirection = new Vector3(

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2955549525791702895}
   - component: {fileID: 8863327043912230385}
   - component: {fileID: 308951686108058122}
+  - component: {fileID: -8430505035941719245}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -66,7 +67,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c89c51a9b379918409650ebc54452d4a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d5f9b479926779d46ba7bf44fc2f98f2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.297
   m_Pitch: 1
@@ -164,6 +165,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18f7123e16f2372489d7a47553321d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8430505035941719245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564498725777339409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92358c86c4fac14a8e8d3d945d3a4b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMusic: 0
 --- !u!1 &1306136446821733493
 GameObject:
   m_ObjectHideFlags: 0

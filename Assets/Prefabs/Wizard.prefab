@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 3848939794603498020}
   - component: {fileID: -3549706950323938339}
   - component: {fileID: 5951166527492373334}
+  - component: {fileID: 3349072835763794600}
   m_Layer: 3
   m_Name: Wizard
   m_TagString: Player
@@ -464,3 +465,16 @@ MonoBehaviour:
   lightAttackSound: {fileID: 8300000, guid: 50a656462c7733f43a5877a6c20ec4e0, type: 3}
   heavyAttackSound: {fileID: 8300000, guid: 5740ef657b516b84593a1e0e34a1509d, type: 3}
   exchangeSound: {fileID: 0}
+--- !u!114 &3349072835763794600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4656803716079480477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92358c86c4fac14a8e8d3d945d3a4b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMusic: 0

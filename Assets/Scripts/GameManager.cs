@@ -1,23 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance; // Singleton
+    public GameState gameState { get; private set; } // Current game state
 
     [SerializeField] Player[] players; // Array containing the players
     [SerializeField] Boss boss; // Boss
 
+    // Statistics
+    public float player0Damage { get; private set; }
+    public float player1Damage { get; private set; }
+    public float playerExchange { get; private set; }
+
     [SerializeField] List<GameObject> hideOnGameOver; // List with all objects to hide on game over sequence
     [SerializeField] GameObject gameOverUI; // Game over UI
-    public bool gameOver { get; private set; } = false; // True when the game is over
     float gameOverTime; // Start time for game over sequence
     GameObject gameOverChar; // Player that died
     GameObject gameOverProjectile;
     Transform gameOverProjectileParent;
+
+    [SerializeField] GameObject statsUI; // Stats screen game object
+
+    public float startTime { get; private set; } // Time at which the game started
+    public float endTime { get; private set; } // ^ when the game ended
 
     public static PlayerKeys player0Keys = new PlayerKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.F, KeyCode.G, KeyCode.H);
     public static PlayerKeys player1Keys = new PlayerKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.Keypad1, KeyCode.Keypad2, KeyCode.Keypad3);
@@ -31,55 +40,93 @@ public class GameManager : MonoBehaviour
         // Set the players' ids
         players[0].playerId = 0;
         players[1].playerId = 1;
+
+        // Starting game state
+        gameState = GameState.Playing;
+        ResetGame();
     }
 
     private void Update()
     {
-        // Game Over Sequence
-        if (gameOver)
+        switch (gameState)
         {
-            if (Time.time >= gameOverTime + 2f && gameOverChar.activeInHierarchy)
-            {
-                // Explode
-                Instantiate(Resources.Load("Explosion"), gameOverChar.transform.position, Quaternion.identity);
-
-                // Reset projectile
-                Animator projectileAnimator = gameOverProjectile.GetComponentInChildren<Animator>();
-                if (projectileAnimator != null) projectileAnimator.speed = 1f;
-                gameOverProjectile.GetComponent<Projectile>().Deactivate();
-
-                // Hide character and projectile
-                gameOverChar.SetActive(false);
-                gameOverProjectile.transform.parent = gameOverProjectileParent;
-            }
-            else if (Time.time >= gameOverTime + 4f)
-            {
-                gameOverUI.SetActive(true);
-                if (Input.anyKeyDown) // Reset after game over
+            case GameState.Intro:
+                break;
+            case GameState.Playing:
+                break;
+            case GameState.GameOver:
+                // Explode at 2 seconds into sequence
+                if (Time.time >= gameOverTime + 2f && gameOverChar.activeInHierarchy)
                 {
-                    gameOverUI.SetActive(false); // Hide game over UI
-                    foreach (GameObject go in hideOnGameOver)
-                    {
-                        if (go.GetComponent<Character>() != null)
-                        {
-                            go.GetComponent<Character>().Reset(); // Reset characters back to normal
-                        }
-                        else if (go.GetComponent<ProjectilePoolController>() != null)
-                        {
-                            go.GetComponent<ProjectilePoolController>().DeactivateAll();
-                        }
-                        go.SetActive(true);
-                    }
+                    // Explode
+                    Instantiate(Resources.Load("Explosion"), gameOverChar.transform.position, Quaternion.identity);
 
-                    gameOverTime = 0f;
-                    gameOver = false;
+                    // Reset projectile
+                    Animator projectileAnimator = gameOverProjectile.GetComponentInChildren<Animator>();
+                    if (projectileAnimator != null) projectileAnimator.speed = 1f;
+                    gameOverProjectile.GetComponent<Projectile>().Deactivate();
+
+                    // Hide character and projectile
+                    gameOverChar.SetActive(false);
+                    gameOverProjectile.transform.parent = gameOverProjectileParent;
                 }
-            }
 
-            // if (Input.anyKeyDown) gameOverTime -= 2f;
+                // Show game over text at 4 seconds into sequence
+                else if (Time.time >= gameOverTime + 4f)
+                {
+                    gameOverUI.SetActive(true);
+                    if (Input.GetKeyDown(KeyCode.Space)) // Reset after game over
+                    {
+                        gameOverUI.SetActive(false); // Hide game over UI
+                        foreach (GameObject go in hideOnGameOver)
+                        {
+                            if (go.GetComponent<Character>() != null)
+                            {
+                                go.GetComponent<Character>().Reset(); // Reset characters back to normal
+                            }
+                            else if (go.GetComponent<ProjectilePoolController>() != null)
+                            {
+                                go.GetComponent<ProjectilePoolController>().DeactivateAll();
+                            }
+                            go.SetActive(true);
+                        }
+
+                        gameOverTime = 0f;
+                        gameState = GameState.Playing;
+
+                        ResetGame();
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Return))
+                    {
+                        // Hide game over ui, show stats ui and swap game state
+                        gameOverUI.SetActive(false);
+                        statsUI.SetActive(true);
+                        gameState = GameState.Stats;
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Escape))
+                    {
+                        SceneManager.LoadScene(0);
+                    }
+                }
+
+                // Skip ahead 2 seconds in sequence
+                if (Input.GetKeyDown(KeyCode.Space)) gameOverTime -= 2f;
+
+                break;
+            case GameState.Stats:
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    // Hide stats ui, show game over ui and swap game state
+                    gameOverUI.SetActive(true);
+                    statsUI.SetActive(false);
+                    gameState = GameState.GameOver;
+                }
+
+                break;
         }
     }
 
+    // Starts game over sequence, called by projectile that deals final blow to character
     public void GameOver(GameObject character, GameObject projectile, Transform projectileParent)
     {
         // Unparent projectile from projectile pool
@@ -98,11 +145,25 @@ public class GameManager : MonoBehaviour
         }
 
         // Start game over sequence
-        gameOver = true;
+        gameState = GameState.GameOver;
         gameOverTime = Time.time;
         gameOverChar = character;
         gameOverProjectile = projectile;
         gameOverProjectileParent = projectileParent;
+
+        endTime = Time.time;
+    }
+
+    // Resets game back to beginning
+    public void ResetGame()
+    {
+        // Reset stats
+        player0Damage = 0f;
+        player1Damage = 0f;
+        playerExchange = 0f;
+
+        // Reset game timer
+        startTime = Time.time;
     }
 
     // Returns a specific player
@@ -111,6 +172,20 @@ public class GameManager : MonoBehaviour
     public Warrior GetWarrior() { return players[1].GetComponent<Warrior>(); }
     public Player GetOtherPlayer(int playerId) { return playerId == 0 ? players[1] : players[0]; } // Returns player based off opposite of the given id
     public Boss GetBoss() { return boss; }
+
+    // Stat trackers
+    public void AddDamageStat(GameObject shooter, float damage)
+    {
+        // Check if shooter was player
+        Player playerComp = shooter.GetComponent<Player>();
+        if (playerComp != null)
+        {
+            // Increase stat for relevant player
+            if (playerComp.playerId == 0) player0Damage += damage;
+            else player1Damage += damage;
+        }
+    }
+    public void AddExchangeStat(float exchange) { playerExchange += exchange; }
 }
 
 public struct PlayerKeys
@@ -133,4 +208,9 @@ public struct PlayerKeys
     public KeyCode light;
     public KeyCode heavy;
     public KeyCode exchange;
+}
+
+public enum GameState
+{
+    Intro, Playing, GameOver, Stats
 }
