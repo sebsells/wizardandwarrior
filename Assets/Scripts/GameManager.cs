@@ -52,6 +52,22 @@ public class GameManager : MonoBehaviour
         // Audio is paused instead of immediately played because it makes the game lag just enough to cause the transition from the intro to fuck up
         bgMusic.Play();
         bgMusic.Pause();
+
+        // Move players depending on player count
+        if (PlayerPrefs.GetInt("players") == 0)
+        {
+            players[1].GetComponentInChildren<SpriteRenderer>().color = Color.clear; // Hide sprite
+            players[1].isActive = false; // Disable player
+            players[1].transform.position = players[0].transform.position; // Move disabled player to active player
+            players[1].transform.SetParent(players[0].transform); // Parent disabled player to active player
+        }
+        else if (PlayerPrefs.GetInt("players") == 1)
+        {
+            players[0].GetComponentInChildren<SpriteRenderer>().color = Color.clear; // Hide sprite
+            players[0].isActive = false; // Disable player
+            players[0].transform.position = players[1].transform.position; // Move disabled player to active player
+            players[0].transform.SetParent(players[1].transform); // Parent disabled player to active player
+        }
     }
 
     private void Update()

@@ -5,11 +5,11 @@ using UnityEngine;
 public class Player : Character
 {
     public int playerId = 0; // Which player are we controlling
-
-    [SerializeField] bool invincible = false; // Makes player invincible, just used for testing
+    public bool isActive = true; // If false player is in solo mode and this character is disabled
 
     [SerializeField] protected float hurtCooldown = 2.0f; // How long the player can go between being hit
     protected float nextHurtTime; // Time when the player will be made vulnerable again
+    [SerializeField] bool invincible = false; // Makes player invincible. For testing only
 
     [SerializeField] protected float directionTime = 22.0f; // How fast player changes direction
     public bool isMoving { get; protected set; } = false; // True if player is holding WASD or equivalent
@@ -62,7 +62,7 @@ public class Player : Character
 
     protected virtual void Update()
     {
-        if (!isDead && GameManager.instance.gameState == GameState.Playing)
+        if (!isDead && isActive && GameManager.instance.gameState == GameState.Playing)
         {
             Movement();
             Attack();
@@ -245,7 +245,8 @@ public class Player : Character
         // Ignore damage if on cooldown
         if (Time.time >= nextHurtTime)
         {
-            return !invincible && base.Damage(amount);
+            if (invincible || !isActive) return false;
+            else return base.Damage(amount);
         }
         else return false;
     }

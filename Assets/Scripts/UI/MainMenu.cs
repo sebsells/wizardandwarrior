@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject playMenu;
     [SerializeField] GameObject controlsMenu;
     [SerializeField] GameObject optionsMenu;
     [SerializeField] GameObject creditsMenu;
@@ -48,11 +49,18 @@ public class MainMenu : MonoBehaviour
 
     public void OpenMain()
     {
+        playMenu.SetActive(false);
         controlsMenu.SetActive(false);
         optionsMenu.SetActive(false);
         creditsMenu.SetActive(false);
 
         mainMenu.SetActive(true);
+    }
+
+    public void OpenPlay()
+    {
+        mainMenu.SetActive(false);
+        playMenu.SetActive(true);
     }
 
     public void OpenControls()
@@ -73,10 +81,12 @@ public class MainMenu : MonoBehaviour
         creditsMenu.SetActive(true);
     }
 
-    public void Play()
+    public void StartGame(int players)
     {
-        //StartCoroutine(LoadGameAsync()); the game doesn't really need a loading screen, its not very big lol
+        PlayerPrefs.SetInt("players", players);
+        PlayerPrefs.Save();
         SceneManager.LoadScene(1);
+        //StartCoroutine(LoadGameAsync()); the game doesn't really need a loading screen, its not very big lol
     }
 
     public void ChangeSFXVolume()
