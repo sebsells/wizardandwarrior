@@ -75,6 +75,10 @@ public class Player : Character
         {
             animator.Play(animIdle);
         }
+        else if (!isActive)
+        {
+            transform.position = otherPlayer.transform.position; // Keep disabled player on top of active player so boss ai doesnt break
+        }
     }
 
     void Movement()
