@@ -6,6 +6,8 @@ public class Player : Character
 {
     public int playerId = 0; // Which player are we controlling
 
+    [SerializeField] bool invincible = false; // Makes player invincible, just used for testing
+
     [SerializeField] protected float hurtCooldown = 2.0f; // How long the player can go between being hit
     protected float nextHurtTime; // Time when the player will be made vulnerable again
 
@@ -60,7 +62,7 @@ public class Player : Character
 
     protected virtual void Update()
     {
-        if (!isDead)
+        if (!isDead && GameManager.instance.gameState == GameState.Playing)
         {
             Movement();
             Attack();
@@ -68,6 +70,10 @@ public class Player : Character
             Animate();
 
             if (!isExchanging) resource = Mathf.Min(maxResource, resource + (resourceSpeed * Time.deltaTime)); // Passive resource gain
+        }
+        else if (GameManager.instance.gameState == GameState.Intro)
+        {
+            animator.Play(animIdle);
         }
     }
 
@@ -176,14 +182,32 @@ public class Player : Character
                 resource -= resourceTaken;
                 otherPlayer.GiveResource(resourceGiven);
 
+                // Particles
+                if (!particles.isPlaying) particles.Play(true);
+
+                // Sfx
+                if (!audioSource[1].isPlaying || audioSource[1].clip != exchangeSound || !isExchanging)
+                {
+                    audioSource[1].clip = exchangeSound;
+                    audioSource[1].Play();
+                }
+
                 // Track stat
                 GameManager.instance.AddExchangeStat(resourceGiven);
 
                 isExchanging = true;
             }
-            else isExchanging = false;
+            else
+            {
+                particles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                isExchanging = false;
+            }
         }
-        else isExchanging = false;
+        else
+        {
+            particles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            isExchanging = false;
+        }
     }
     public void GiveResource(float amount) { resource = Mathf.Clamp(resource + amount, 0.0f, maxResource); }
     public float GetResourceRatio() { return resource / maxResource; }
@@ -221,7 +245,7 @@ public class Player : Character
         // Ignore damage if on cooldown
         if (Time.time >= nextHurtTime)
         {
-            return base.Damage(amount);
+            return !invincible && base.Damage(amount);
         }
         else return false;
     }

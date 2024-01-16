@@ -8,14 +8,17 @@ public class GameManager : MonoBehaviour
     public static GameManager instance; // Singleton
     public GameState gameState { get; private set; } // Current game state
 
+    // Gameplay objects
     [SerializeField] Player[] players; // Array containing the players
     [SerializeField] Boss boss; // Boss
+    [SerializeField] AudioSource bgMusic; // Background music source
 
     // Statistics
     public float player0Damage { get; private set; }
     public float player1Damage { get; private set; }
     public float playerExchange { get; private set; }
 
+    // Game over objects
     [SerializeField] List<GameObject> hideOnGameOver; // List with all objects to hide on game over sequence
     [SerializeField] GameObject gameOverUI; // Game over UI
     float gameOverTime; // Start time for game over sequence
@@ -23,6 +26,7 @@ public class GameManager : MonoBehaviour
     GameObject gameOverProjectile;
     Transform gameOverProjectileParent;
 
+    // Stats screen objects
     [SerializeField] GameObject statsUI; // Stats screen game object
 
     public float startTime { get; private set; } // Time at which the game started
@@ -42,8 +46,12 @@ public class GameManager : MonoBehaviour
         players[1].playerId = 1;
 
         // Starting game state
-        gameState = GameState.Playing;
+        gameState = GameState.Intro;
         ResetGame();
+
+        // Audio is paused instead of immediately played because it makes the game lag just enough to cause the transition from the intro to fuck up
+        bgMusic.Play();
+        bgMusic.Pause();
     }
 
     private void Update()
@@ -92,9 +100,9 @@ public class GameManager : MonoBehaviour
                         }
 
                         gameOverTime = 0f;
-                        gameState = GameState.Playing;
 
                         ResetGame();
+                        StartGame();
                     }
                     else if (Input.GetKeyDown(KeyCode.Return))
                     {
@@ -124,6 +132,20 @@ public class GameManager : MonoBehaviour
 
                 break;
         }
+    }
+
+    // Starts the game after intro
+    public void StartGame()
+    {
+        // Change game state
+        gameState = GameState.Playing;
+
+        // Unpause/play music
+        bgMusic.UnPause();
+        if (!bgMusic.isPlaying) bgMusic.Play();
+
+        // Start timer
+        startTime = Time.time;
     }
 
     // Starts game over sequence, called by projectile that deals final blow to character

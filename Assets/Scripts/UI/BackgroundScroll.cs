@@ -16,6 +16,7 @@ public class BackgroundScroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.speed = Mathf.Lerp(speedOnZeroHealth, 1f, GameManager.instance.GetBoss().GetHealthRatio());
+        if (GameManager.instance.gameState == GameState.Intro) animator.speed = 0f;
+        else animator.speed = Mathf.Lerp(speedOnZeroHealth, 1f, GameManager.instance.GetBoss().GetHealthRatio());
     }
 }

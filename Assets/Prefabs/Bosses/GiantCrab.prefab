@@ -543,7 +543,13 @@ MonoBehaviour:
   clawAttackSound: {fileID: 8300000, guid: 05de69d75f82cde46a2c4b1dea36df5f, type: 3}
   waterAttackSound: {fileID: 8300000, guid: f9ce3697f3e82c942b8f6d01087251ef, type: 3}
   sandAttackSound: {fileID: 8300000, guid: caa89542e1223544aa709145ca82de47, type: 3}
+  stomp1: {fileID: 8300000, guid: f34c71291f9a3af4798eee73675a37ef, type: 3}
+  stomp2: {fileID: 8300000, guid: 65794abd38772d642a5a795736a85e2f, type: 3}
+  stomp3: {fileID: 8300000, guid: 07445d4e9882e3b40bbd717cc5314a62, type: 3}
+  stomp4: {fileID: 8300000, guid: bd0fec8fe3739d846b05719dfae83265, type: 3}
+  walkAnimation: GiantCrabWalk
   attackAnimation: GiantCrabAttack
+  introAnimation: GiantCrabIntro
 --- !u!114 &4275865712527547406
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,12 +5,17 @@ using TMPro;
 
 public class HealthTextUI : MonoBehaviour
 {
-    [SerializeField] Character character;
+    Boss boss;
+
+    private void Start()
+    {
+        boss = GameManager.instance.GetBoss();
+    }
 
     private void Update()
     {
-        string maxHealth = character.maxHealth.ToString();
-        string currentHealth = ((int)character.health).ToString("D"+maxHealth.Length.ToString());
+        string maxHealth = boss.maxHealth.ToString();
+        string currentHealth = ((int)boss.health).ToString("D"+maxHealth.Length.ToString());
         GetComponent<TextMeshProUGUI>().text = currentHealth + "/" + maxHealth;
     }
 }

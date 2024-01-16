@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class BossBar : MonoBehaviour
 {
-    [SerializeField] Character boss;
+    Boss boss;
     Slider slider;
 
     void Start()
     {
+        boss = GameManager.instance.GetBoss();
         slider = GetComponent<Slider>();
     }
 

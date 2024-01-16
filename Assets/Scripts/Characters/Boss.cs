@@ -29,4 +29,8 @@ public class Boss : Character
         animator.speed = 0f; // Stop moving
         rb.velocity = Vector3.zero;
     }
+
+    protected virtual void Intro()
+    {
+    }
 }

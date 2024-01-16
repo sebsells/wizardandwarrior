@@ -28,59 +28,73 @@ public class GiantCrab : Boss
     [SerializeField] AudioClip clawAttackSound;
     [SerializeField] AudioClip waterAttackSound;
     [SerializeField] AudioClip sandAttackSound;
+    [SerializeField] AudioClip stomp1;
+    [SerializeField] AudioClip stomp2;
+    [SerializeField] AudioClip stomp3;
+    [SerializeField] AudioClip stomp4;
 
     // Animation names
+    [SerializeField] string walkAnimation;
     [SerializeField] string attackAnimation;
+    [SerializeField] string introAnimation;
 
     protected override void Update()
     {
-        base.Update();
-        if (isDead) return;
-
-        // Desperation
-        desperation = 2f - GetHealthRatio();
-
-        // Timer
-        phaseTimer += Time.deltaTime * desperation / phaseLength;
-
-        // Attack phases
-        switch (attackPhase)
+        // Boss AI
+        if (GameManager.instance.gameState == GameState.Playing)
         {
-            case 0:
-                WalkPhase();
-                break;
-            case 1:
-                ClawAttack();
-                break;
-            case 2:
-                WaterAttack();
-                break;
-            case 3:
-                SandAttack();
-                break;
-            default:
-                attackPhase = 0;
-                break;
+            base.Update();
+            if (isDead) return;
+
+            // Desperation
+            desperation = 2f - GetHealthRatio();
+
+            // Timer
+            phaseTimer += Time.deltaTime * desperation / phaseLength;
+
+            // Attack phases
+            switch (attackPhase)
+            {
+                case 0:
+                    WalkPhase();
+                    break;
+                case 1:
+                    ClawAttack();
+                    break;
+                case 2:
+                    WaterAttack();
+                    break;
+                case 3:
+                    SandAttack();
+                    break;
+                default:
+                    attackPhase = 0;
+                    break;
+            }
+
+            // Switch phases
+            if (phaseTimer >= 1f)
+            {
+                // Swap to walk phase
+                if (attackPhase != 0) attackPhase = 0;
+
+                // Swap to random attack phase
+                else attackPhase = Random.Range(1, 4);
+
+                // Reset timer
+                phaseTimer = 0f;
+            }
         }
-
-        // Switch phases
-        if (phaseTimer >= 1f)
+        else if (GameManager.instance.gameState == GameState.Intro)
         {
-            // Swap to walk phase
-            if (attackPhase != 0) attackPhase = 0;
-
-            // Swap to random attack phase
-            else attackPhase = Random.Range(1, 4);
-
-            // Reset timer
-            phaseTimer = 0f;
+            Intro();
         }
     }
 
     private void WalkPhase()
     {
-        moveTimer += Time.deltaTime * moveSpeed * desperation;
         transform.position = new Vector3(transform.position.x, (Mathf.Sin(moveTimer) * 1.5f) - 1.5f, 0f);
+        moveTimer += Time.deltaTime * moveSpeed * desperation;
     }
 
     // Fires fast moving projectiles that lock on to the player on activation and travel towards that initial position
@@ -206,6 +220,78 @@ public class GiantCrab : Boss
         }
 
         if (phaseTimer >= 1f) sandPhaseStarted = false; // Reset phase started flag at the end of the phase
+    }
+
+    protected override void Intro()
+    {
+        animator.Play(introAnimation);
+        phaseTimer += Time.deltaTime;
+
+        // Syncing sound effects to animation
+        // There's probably a better way to do this LOL
+        if (phaseTimer >= 6.75)
+        {
+            animator.Play(walkAnimation);
+            GameManager.instance.StartGame();
+            phaseTimer = 0f;
+        }
+        else if (phaseTimer >= 6.333f && audioSource[0].clip != clawAttackSound)
+        {
+            if (audioSource[0].clip != clawAttackSound)
+            {
+                audioSource[0].clip = clawAttackSound;
+                audioSource[0].Play();
+            }
+        }
+        else if (phaseTimer >= 6f)
+        {
+            if (audioSource[1].clip != clawAttackSound)
+            {
+                audioSource[1].clip = clawAttackSound;
+                audioSource[1].Play();
+            }
+        }
+        else if (phaseTimer >= 5.25f)
+        {
+            if (audioSource[1].clip != waterAttackSound)
+            {
+                audioSource[1].clip = waterAttackSound;
+                audioSource[1].Play();
+            }
+        }
+
+        else if (phaseTimer >= 3f)
+        {
+            if (audioSource[1].clip != stomp4)
+            {
+                audioSource[1].clip = stomp4;
+                audioSource[1].Play();
+            }
+        }
+        else if (phaseTimer >= 2f)
+        {
+            if (audioSource[1].clip != stomp3)
+            {
+                audioSource[1].clip = stomp3;
+                audioSource[1].Play();
+            }
+        }
+        else if (phaseTimer >= 1f)
+        {
+            if (audioSource[1].clip != stomp2)
+            {
+                audioSource[1].clip = stomp2;
+                audioSource[1].Play();
+            }
+        }
+        else if (phaseTimer >= 0.05f) // if this is too low the sound effect can somehow play early
+        {
+            if (audioSource[1].clip != stomp1)
+            {
+                audioSource[1].clip = stomp1;
+                audioSource[1].Play();
+            }
+        }
     }
 
     public override void Reset()

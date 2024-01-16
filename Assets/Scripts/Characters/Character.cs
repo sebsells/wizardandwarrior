@@ -7,6 +7,7 @@ public class Character : MonoBehaviour
     // Components
     protected Animator animator = null;
     protected AudioSource[] audioSource = null; // Characters have multiple sources, one for hurt sounds and the other for attack sounds. Multiple sources prevents sounds overwriting each other
+    protected ParticleSystem particles = null;
     protected Rigidbody2D rb = null;
     protected SpriteRenderer spriteRenderer = null;
 
@@ -26,6 +27,7 @@ public class Character : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponents<AudioSource>();
+        particles = GetComponent<ParticleSystem>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
 

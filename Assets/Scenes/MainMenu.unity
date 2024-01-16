@@ -3805,7 +3805,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -4645,12 +4645,17 @@ MonoBehaviour:
     sebulant
 
 
-    SFX & Music:
+    SFX:
 
     jsfxr
     & pixabay
 
-'
+
+    Music:
+
+    alperomeresin -
+
+    Final Boss Battle'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3459a38983434454391db5cbd1b1179a, type: 2}
   m_sharedMaterial: {fileID: 8869610988129377620, guid: 3459a38983434454391db5cbd1b1179a, type: 2}

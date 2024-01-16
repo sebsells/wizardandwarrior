@@ -75,7 +75,8 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        StartCoroutine(LoadGameAsync());
+        //StartCoroutine(LoadGameAsync()); the game doesn't really need a loading screen, its not very big lol
+        SceneManager.LoadScene(1);
     }
 
     public void ChangeSFXVolume()
@@ -102,7 +103,7 @@ public class MainMenu : MonoBehaviour
 
         while (!operation.isDone)
         {
-            loadingBar.value = operation.progress;
+            loadingBar.value = Mathf.Clamp01(operation.progress / 0.9f);
             yield return null;
         }
     }
