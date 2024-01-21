@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1191eee459916bb4b9b83a77325f29bd
+guid: d292e135bcc7865419cbf283262348e8
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638414416902424074
+  platformSettingsDirtyTick: 638414632747653504
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,58 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: CorruptKingAttack
+  - name: FalseWizardProjectile_Frame_0
     originalName: 
-    pivot: {x: 0.47826087, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 76
-      width: 23
-      height: 27
-    spriteID: 773ac27f992adf44c9026833f8106b87
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 76}
-  - name: CorruptKingAttack_Frame_1
-    originalName: 
-    pivot: {x: 0.47826087, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 35
-      y: 4
-      width: 23
-      height: 27
-    spriteID: dcfc1237b2b3d194e8d57459d06e93ea
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 35, y: 4}
-  - name: CorruptKingAttack_Frame_2
-    originalName: 
-    pivot: {x: 0.47826087, y: 0}
+    pivot: {x: 0.5, y: -0.6428572}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 23
-      height: 28
-    spriteID: c6eaa2c741325b3438ad8248c591a66e
+      width: 32
+      height: 14
+    spriteID: 6dfee69966c175141bc790537b3e6a08
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -179,18 +139,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: CorruptKingAttack_Frame_3
+  - name: FalseWizardProjectile_Frame_1
     originalName: 
-    pivot: {x: 0.47826087, y: 0}
+    pivot: {x: 0.5, y: -0.6428572}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 40
-      width: 23
-      height: 28
-    spriteID: 497168e6fac5dd442a64a9475d6c65bb
+      y: 26
+      width: 32
+      height: 14
+    spriteID: 5169db66ae9c8584f9bcaf0c8155c324
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -198,48 +158,60 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 40}
+    uvTransform: {x: 4, y: 26}
+  - name: FalseWizardProjectile_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: -0.6428572}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 48
+      width: 32
+      height: 14
+    spriteID: 68e45e58ad9ce454586865ec44a7c5b5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 48}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -718636868
-    name: CorruptKingAttack
+    guid: 642381991
+    name: FalseWizardProjectile
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: CorruptKingAttack_Frame_0
+    - name: FalseWizardProjectile_Frame_0
       frameIndex: 0
       cellRect:
-        x: 5
-        y: 0
-        width: 23
-        height: 27
-      spriteId: 773ac27f992adf44c9026833f8106b87
-    - name: CorruptKingAttack_Frame_1
+        x: 0
+        y: 9
+        width: 32
+        height: 14
+      spriteId: 6dfee69966c175141bc790537b3e6a08
+    - name: FalseWizardProjectile_Frame_1
       frameIndex: 1
       cellRect:
-        x: 5
-        y: 0
-        width: 23
-        height: 27
-      spriteId: dcfc1237b2b3d194e8d57459d06e93ea
-    - name: CorruptKingAttack_Frame_2
+        x: 0
+        y: 9
+        width: 32
+        height: 14
+      spriteId: 5169db66ae9c8584f9bcaf0c8155c324
+    - name: FalseWizardProjectile_Frame_2
       frameIndex: 2
       cellRect:
-        x: 5
-        y: 0
-        width: 23
-        height: 28
-      spriteId: c6eaa2c741325b3438ad8248c591a66e
-    - name: CorruptKingAttack_Frame_3
-      frameIndex: 3
-      cellRect:
-        x: 5
-        y: 0
-        width: 23
-        height: 28
-      spriteId: 497168e6fac5dd442a64a9475d6c65bb
+        x: 0
+        y: 9
+        width: 32
+        height: 14
+      spriteId: 68e45e58ad9ce454586865ec44a7c5b5
     linkedCells: []
     parentIndex: -1
   platformSettings:

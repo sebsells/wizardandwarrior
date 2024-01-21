@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1191eee459916bb4b9b83a77325f29bd
+guid: 423e830a528927a4abbcc85cf8097183
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638414416902424074
+  platformSettingsDirtyTick: 638414672324404427
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,58 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: CorruptKingAttack
+  - name: CoinProjectile_Frame_0
     originalName: 
-    pivot: {x: 0.47826087, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 76
-      width: 23
-      height: 27
-    spriteID: 773ac27f992adf44c9026833f8106b87
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 76}
-  - name: CorruptKingAttack_Frame_1
-    originalName: 
-    pivot: {x: 0.47826087, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 35
-      y: 4
-      width: 23
-      height: 27
-    spriteID: dcfc1237b2b3d194e8d57459d06e93ea
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 35, y: 4}
-  - name: CorruptKingAttack_Frame_2
-    originalName: 
-    pivot: {x: 0.47826087, y: 0}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 23
-      height: 28
-    spriteID: c6eaa2c741325b3438ad8248c591a66e
+      width: 8
+      height: 8
+    spriteID: 88e174b7b5a5a6e46aa2f3b41c046849
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -179,18 +139,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: CorruptKingAttack_Frame_3
+  - name: CoinProjectile_Frame_1
     originalName: 
-    pivot: {x: 0.47826087, y: 0}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 40
-      width: 23
-      height: 28
-    spriteID: 497168e6fac5dd442a64a9475d6c65bb
+      y: 20
+      width: 6
+      height: 8
+    spriteID: 8cbc52a2eb950c14892670dd287a0cf2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -198,48 +158,144 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 40}
+    uvTransform: {x: 4, y: 20}
+  - name: CoinProjectile_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 52
+      width: 4
+      height: 8
+    spriteID: f683696933601ee4f81e71c748cf061b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 52}
+  - name: CoinProjectile_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 20
+      y: 20
+      width: 2
+      height: 8
+    spriteID: aa11e8b7a05438546ba94751243bbbe5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 20, y: 20}
+  - name: CoinProjectile_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 20
+      y: 4
+      width: 4
+      height: 8
+    spriteID: f2dcec66c69449a4c809b00d1db1b870
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 20, y: 4}
+  - name: CoinProjectile_Frame_5
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 36
+      width: 6
+      height: 8
+    spriteID: 3b723cd3c988d0f4a93cc07e2789fd69
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 36}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -718636868
-    name: CorruptKingAttack
+    guid: -845593028
+    name: CoinProjectile
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: CorruptKingAttack_Frame_0
+    - name: CoinProjectile_Frame_0
       frameIndex: 0
       cellRect:
-        x: 5
+        x: 0
         y: 0
-        width: 23
-        height: 27
-      spriteId: 773ac27f992adf44c9026833f8106b87
-    - name: CorruptKingAttack_Frame_1
+        width: 8
+        height: 8
+      spriteId: 88e174b7b5a5a6e46aa2f3b41c046849
+    - name: CoinProjectile_Frame_1
       frameIndex: 1
       cellRect:
-        x: 5
+        x: 1
         y: 0
-        width: 23
-        height: 27
-      spriteId: dcfc1237b2b3d194e8d57459d06e93ea
-    - name: CorruptKingAttack_Frame_2
+        width: 6
+        height: 8
+      spriteId: 8cbc52a2eb950c14892670dd287a0cf2
+    - name: CoinProjectile_Frame_2
       frameIndex: 2
       cellRect:
-        x: 5
+        x: 2
         y: 0
-        width: 23
-        height: 28
-      spriteId: c6eaa2c741325b3438ad8248c591a66e
-    - name: CorruptKingAttack_Frame_3
+        width: 4
+        height: 8
+      spriteId: f683696933601ee4f81e71c748cf061b
+    - name: CoinProjectile_Frame_3
       frameIndex: 3
       cellRect:
-        x: 5
+        x: 3
         y: 0
-        width: 23
-        height: 28
-      spriteId: 497168e6fac5dd442a64a9475d6c65bb
+        width: 2
+        height: 8
+      spriteId: aa11e8b7a05438546ba94751243bbbe5
+    - name: CoinProjectile_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 2
+        y: 0
+        width: 4
+        height: 8
+      spriteId: f2dcec66c69449a4c809b00d1db1b870
+    - name: CoinProjectile_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 1
+        y: 0
+        width: 6
+        height: 8
+      spriteId: 3b723cd3c988d0f4a93cc07e2789fd69
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -293,4 +349,4 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 32, y: 32}
+  canvasSize: {x: 8, y: 8}

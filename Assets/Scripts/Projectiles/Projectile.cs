@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     public bool isActive = false; // True if projectile is moving and can damage characters
     public bool isFriendly; // True if projectile was fired from player
-    private GameObject shooter; // Game object that shot this projectile
+    protected GameObject shooter; // Game object that shot this projectile
     [SerializeField] protected bool destroyOnHit; // True if projectile is destroyed when hitting something
 
     [SerializeField] protected float speed; // Speed that the projectile moves
@@ -77,7 +77,7 @@ public class Projectile : MonoBehaviour
 
         moveDirection = isFriendly ? Vector3.right : Vector3.left;
 
-        if (GetComponent<ParticleSystem>() != null) GetComponent<ParticleSystem>().Play(); // Pause any particles
+        if (GetComponent<ParticleSystem>() != null) GetComponent<ParticleSystem>().Play(); // Play any particles
 
         shooter = a_shooter;
     }

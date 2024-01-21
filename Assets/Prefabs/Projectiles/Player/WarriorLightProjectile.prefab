@@ -49,8 +49,9 @@ MonoBehaviour:
   isActive: 0
   isFriendly: 1
   destroyOnHit: 1
-  speed: 10
+  speed: 13
   damage: 1
+  lifeTime: 2
 --- !u!61 &3210037250424208565
 BoxCollider2D:
   m_ObjectHideFlags: 0

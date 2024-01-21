@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2025177144833640623}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1310843941791112470, guid: e4da399025d118647bf493b1ef24e5e1, type: 3}
+  m_Sprite: {fileID: 1734573128618584178, guid: d292e135bcc7865419cbf283262348e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 3800454240118258903}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: -5545468838716156374, guid: e4da399025d118647bf493b1ef24e5e1, type: 3}
+  m_Controller: {fileID: 82552659409546351, guid: d292e135bcc7865419cbf283262348e8, type: 3}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -115,10 +115,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2025177144833640623}
-  - component: {fileID: 6778607780616427568}
   - component: {fileID: 261202601615172228}
+  - component: {fileID: 6883352149863341734}
   m_Layer: 0
-  m_Name: WizardHeavyProjectile
+  m_Name: FalseWizardProjectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,24 +140,6 @@ Transform:
   - {fileID: 1423219645424500371}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6778607780616427568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7004041663567444006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62310586990242c40834a72885e9b4c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActive: 0
-  isFriendly: 1
-  destroyOnHit: 1
-  speed: 18
-  damage: 5
-  lifeTime: 2
 --- !u!70 &261202601615172228
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -193,3 +175,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2, y: 0.875}
   m_Direction: 1
+--- !u!114 &6883352149863341734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7004041663567444006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd537cddc76fa0641a4400faf6579dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  isFriendly: 0
+  destroyOnHit: 0
+  speed: 15
+  damage: 1
+  lifeTime: 2

@@ -49,8 +49,9 @@ MonoBehaviour:
   isActive: 0
   isFriendly: 1
   destroyOnHit: 1
-  speed: 15
+  speed: 18
   damage: 5
+  lifeTime: 2
 --- !u!58 &3699661932534555499
 CircleCollider2D:
   m_ObjectHideFlags: 0

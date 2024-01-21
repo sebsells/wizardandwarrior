@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
                         // On win
                         if (boss.isDead)
                         {
-                            SceneManager.LoadScene(Mathf.Min(2, SceneManager.GetActiveScene().buildIndex + 1));
+                            SceneManager.LoadScene(Mathf.Min(3, SceneManager.GetActiveScene().buildIndex + 1));
                         }
 
                         // On lose

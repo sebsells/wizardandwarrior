@@ -251,12 +251,13 @@ public class ByleSlime : Boss
     {
         base.Reset();
 
-        phaseTimer = 0f; // Reset phase timer
+        phaseTimer = 1f; // Reset phase timer
 
         // Back to default jump position
         currentJumpPosition = 1;
         jumpPosition = 1;
 
         phasesSinceJump = 3; // Force jump as first phase
+        phase = 0;
 }
 }
