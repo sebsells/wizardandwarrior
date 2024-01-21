@@ -537,7 +537,7 @@ MonoBehaviour:
   clawProjectiles: []
   waterProjectiles: []
   sandProjectiles: []
-  sandBurstSize: 5
+  sandBurstSize: 4
   phaseLength: 2
   projectileSpawn: {fileID: 5581366506022122276}
   clawAttackSound: {fileID: 8300000, guid: 05de69d75f82cde46a2c4b1dea36df5f, type: 3}

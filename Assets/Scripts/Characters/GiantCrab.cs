@@ -22,6 +22,7 @@ public class GiantCrab : Boss
     [SerializeField] private float phaseLength = 2.0f; // How long each phase lasts
     private float nextAttackTime; // Time when next attack can be made during an attack phase
     private int attackPhase = 0; // Current attack phase
+    private int lastAttackPhase = 0; // Last attack phase (excluding walk) to prevent same attacks from playing repeatedly
     [SerializeField] private Transform projectileSpawn; // Spawn points of projectiles on the crab
 
     // Sound effects
@@ -79,7 +80,15 @@ public class GiantCrab : Boss
                 if (attackPhase != 0) attackPhase = 0;
 
                 // Swap to random attack phase
-                else attackPhase = Random.Range(1, 4);
+                else
+                {
+                    do
+                    {
+                        attackPhase = Random.Range(1, 4);
+                    } while (attackPhase == lastAttackPhase);
+
+                    lastAttackPhase = attackPhase;
+                }
 
                 // Reset timer
                 phaseTimer = 0f;

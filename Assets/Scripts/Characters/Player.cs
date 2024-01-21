@@ -269,6 +269,7 @@ public class Player : Character
         spriteRenderer.color = Color.white; // Force player to be visible
 
         animator.speed = 0f; // Stop moving
+        particles.Pause(); // Pause particles
         rb.velocity = Vector3.zero;
     }
 

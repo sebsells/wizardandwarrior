@@ -44,6 +44,7 @@ public class MainMenu : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && sfxChanged)
         {
             sfxTest.Play();
+            sfxChanged = false;
         }
     }
 

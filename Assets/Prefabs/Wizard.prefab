@@ -5168,12 +5168,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
-  moveSpeed: 6
+  moveSpeed: 7
   hurtSound: {fileID: 8300000, guid: 2f88af2465d6d90478b425838ffc7e68, type: 3}
   deathSound: {fileID: 8300000, guid: 93de96d746500bf4eb158789f574fba7, type: 3}
   playerId: 0
-  invincible: 0
+  isActive: 1
   hurtCooldown: 2
+  invincible: 0
   directionTime: 22
   projectileSpawn: {fileID: 6986638230019842171}
   lightProjectilePool: []

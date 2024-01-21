@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour
     protected Vector3 moveDirection = Vector3.zero; // Direction that the projectile will move (defined in attack based off isFriendly)
 
     protected float startTime; // Time at which the projectile became active
-    protected float lifeTime = 2.0f; // How long projectile will be active for before it dies
+    [SerializeField] protected float lifeTime = 2.0f; // How long projectile will be active for before it dies
 
     protected virtual void Start()
     {
@@ -40,7 +40,7 @@ public class Projectile : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (isActive)
         {
@@ -56,6 +56,7 @@ public class Projectile : MonoBehaviour
                     GameManager.instance.GameOver(collision.gameObject, gameObject, transform.parent); // Game over if killed player
                     moveDirection = Vector3.zero; // Stop projectile from moving
                     startTime += 2f; // Make sure projectile isn't deactivated during gameover sequence
+                    if (GetComponent<ParticleSystem>() != null) GetComponent<ParticleSystem>().Pause(); // Pause any particles
                 }
                 else if (destroyOnHit)
                 {
@@ -75,6 +76,8 @@ public class Projectile : MonoBehaviour
         startTime = Time.time;
 
         moveDirection = isFriendly ? Vector3.right : Vector3.left;
+
+        if (GetComponent<ParticleSystem>() != null) GetComponent<ParticleSystem>().Play(); // Pause any particles
 
         shooter = a_shooter;
     }
