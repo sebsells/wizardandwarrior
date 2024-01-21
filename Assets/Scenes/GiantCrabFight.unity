@@ -8588,6 +8588,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOver UI
       objectReference: {fileID: 0}
+    - target: {fileID: 4164539954920902961, guid: 86cce600b780dd949bd927001df36257, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7017315221208682452, guid: 86cce600b780dd949bd927001df36257, type: 3}
+      propertyPath: m_text
+      value: PRESS SPACE TO CONTINUE
+      objectReference: {fileID: 0}
     - target: {fileID: 7671164531887335442, guid: 86cce600b780dd949bd927001df36257, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8627,6 +8635,10 @@ PrefabInstance:
     - target: {fileID: 7671164531887335442, guid: 86cce600b780dd949bd927001df36257, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8692034560791669648, guid: 86cce600b780dd949bd927001df36257, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 124
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

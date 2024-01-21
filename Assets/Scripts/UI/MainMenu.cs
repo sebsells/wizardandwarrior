@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject controlsMenu;
     [SerializeField] GameObject optionsMenu;
     [SerializeField] GameObject creditsMenu;
+    [SerializeField] Button continueButton;
     [SerializeField] Slider sfxSlider;
     [SerializeField] Slider musicSlider;
     [SerializeField] GameObject background;
@@ -19,6 +20,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] AudioSource backgroundMusic;
     AudioSource sfxTest;
     bool sfxChanged = false;
+    bool isRestarting = false; // Is true when player is going to reset game progress instead of continuing
 
     private void Start()
     {
@@ -30,13 +32,14 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        // Set values
-        sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume");
-        musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
-        backgroundMusic.volume = musicSlider.value;
+        // Set values for sfx
+        backgroundMusic.volume = PlayerPrefs.GetFloat("musicVolume");
 
         sfxTest = GetComponent<AudioSource>();
         sfxTest.volume = sfxSlider.value;
+
+        // Enable continue button if possible
+        continueButton.interactable = PlayerPrefs.GetInt("lastBoss") != 0;
     }
 
     private void Update()
@@ -58,6 +61,17 @@ public class MainMenu : MonoBehaviour
         mainMenu.SetActive(true);
     }
 
+    public void OpenStart() {
+        isRestarting = true;
+        OpenPlay();
+    }
+
+    public void OpenContinue()
+    {
+        isRestarting = false;
+        OpenPlay();
+    }
+
     public void OpenPlay()
     {
         mainMenu.SetActive(false);
@@ -72,6 +86,11 @@ public class MainMenu : MonoBehaviour
 
     public void OpenOptions()
     {
+        // Set slider values
+        sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume");
+        musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
+        sfxTest.volume = 0f; // Make audio test 0 since the slider change above sets off the sound
+
         mainMenu.SetActive(false);
         optionsMenu.SetActive(true);
     }
@@ -86,7 +105,8 @@ public class MainMenu : MonoBehaviour
     {
         PlayerPrefs.SetInt("players", players);
         PlayerPrefs.Save();
-        SceneManager.LoadScene(1);
+        if (isRestarting || PlayerPrefs.GetInt("lastBoss") == 0) SceneManager.LoadScene(1);
+        else SceneManager.LoadScene(PlayerPrefs.GetInt("lastBoss"));
         //StartCoroutine(LoadGameAsync()); the game doesn't really need a loading screen, its not very big lol
     }
 

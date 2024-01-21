@@ -64,6 +64,10 @@ public class GameManager : MonoBehaviour
             players[0].GetComponentInChildren<SpriteRenderer>().color = Color.clear; // Hide sprite
             players[0].isActive = false; // Disable player
         }
+
+        // Set last boss save data so player can leave and come back
+        PlayerPrefs.SetInt("lastBoss", SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.Save();
     }
 
     private void Update()
@@ -97,24 +101,34 @@ public class GameManager : MonoBehaviour
                     gameOverUI.SetActive(true);
                     if (Input.GetKeyDown(KeyCode.Space)) // Reset after game over
                     {
-                        gameOverUI.SetActive(false); // Hide game over UI
-                        foreach (GameObject go in hideOnGameOver)
+                        // On win
+                        if (boss.isDead)
                         {
-                            if (go.GetComponent<Character>() != null)
-                            {
-                                go.GetComponent<Character>().Reset(); // Reset characters back to normal
-                            }
-                            else if (go.GetComponent<ProjectilePoolController>() != null)
-                            {
-                                go.GetComponent<ProjectilePoolController>().DeactivateAll();
-                            }
-                            go.SetActive(true);
+                            SceneManager.LoadScene(Mathf.Min(2, SceneManager.GetActiveScene().buildIndex + 1));
                         }
 
-                        gameOverTime = 0f;
+                        // On lose
+                        else
+                        {
+                            gameOverUI.SetActive(false); // Hide game over UI
+                            foreach (GameObject go in hideOnGameOver)
+                            {
+                                if (go.GetComponent<Character>() != null)
+                                {
+                                    go.GetComponent<Character>().Reset(); // Reset characters back to normal
+                                }
+                                else if (go.GetComponent<ProjectilePoolController>() != null)
+                                {
+                                    go.GetComponent<ProjectilePoolController>().DeactivateAll();
+                                }
+                                go.SetActive(true);
+                            }
 
-                        ResetGame();
-                        StartGame();
+                            gameOverTime = 0f;
+
+                            ResetGame();
+                            StartGame();
+                        }
                     }
                     else if (Input.GetKeyDown(KeyCode.Return))
                     {
