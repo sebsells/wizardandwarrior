@@ -156,7 +156,7 @@ MonoBehaviour:
   isFriendly: 1
   destroyOnHit: 1
   speed: 18
-  damage: 500
+  damage: 5
   lifeTime: 2
 --- !u!70 &261202601615172228
 CapsuleCollider2D:
