@@ -4930,10 +4930,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5155987801883112300, guid: 4524419d7db5bd64f81927b5cb7271d9, type: 3}
-      propertyPath: invincible
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5155987801883112300, guid: 4524419d7db5bd64f81927b5cb7271d9, type: 3}
       propertyPath: attackProjectiles.Array.size
       value: 25
       objectReference: {fileID: 0}

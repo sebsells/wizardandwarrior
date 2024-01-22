@@ -13,6 +13,9 @@ public class PossessedKing : Boss
     private int lastAttackPhase = 0; // Last attack phase to prevent same phases from playing repeatedly
     [SerializeField] Transform projectileSpawn; // Projectile spawn point
 
+    // Intro
+    bool introStarted = false;
+
     // Timer used to spin the king in a circle
     private float moveTimer;
 
@@ -37,12 +40,15 @@ public class PossessedKing : Boss
     // Animations
     [SerializeField] string floatAnimation;
     [SerializeField] string attackAnimation;
+    [SerializeField] string introAnimation;
 
     // Sound effects
     [SerializeField] AudioClip crownAttackSound;
     [SerializeField] AudioClip falseWizardSound;
     [SerializeField] AudioClip falseWarriorSound;
     [SerializeField] AudioClip coinAttackSound;
+    [SerializeField] AudioClip introFloatSound;
+    [SerializeField] AudioClip introNoiseSound;
 
     protected override void Update()
     {
@@ -82,7 +88,7 @@ public class PossessedKing : Boss
         }
         else if (GameManager.instance.gameState == GameState.Intro)
         {
-            Intro();
+            if (!introStarted) StartCoroutine(Intro());
         }
     }
 
@@ -197,9 +203,41 @@ public class PossessedKing : Boss
         animator.Play(floatAnimation);
     }
 
-    protected override void Intro()
+    IEnumerator Intro()
     {
         PhaseReset();
+        introStarted = true;
+        animator.Play(introAnimation);
+
+        audioSource[1].PlayOneShot(introFloatSound);
+
+        yield return new WaitForSeconds(1.5f);
+
+        audioSource[1].PlayOneShot(introFloatSound);
+
+        yield return new WaitForSeconds(2.5f);
+
+        audioSource[1].PlayOneShot(introNoiseSound);
+
+        yield return new WaitForSeconds(1f);
+
+        for (int i = 0; i < 12; ++i)
+        {
+            audioSource[1].PlayOneShot(introNoiseSound);
+            yield return new WaitForSeconds(1f / 6f); // laughs 6 times a second
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        audioSource[1].PlayOneShot(introFloatSound);
+
+        yield return new WaitForSeconds(1f);
+
+        audioSource[1].PlayOneShot(introFloatSound);
+
+        yield return new WaitForSeconds(1f);
+
+        introStarted = false;
         GameManager.instance.StartGame();
     }
 

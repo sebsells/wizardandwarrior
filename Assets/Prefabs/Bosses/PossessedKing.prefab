@@ -493,10 +493,13 @@ MonoBehaviour:
   coinBurstSize: 4
   floatAnimation: PossessedKingFloat
   attackAnimation: PossessedKingAttack
+  introAnimation: PossessedKingIntro
   crownAttackSound: {fileID: 8300000, guid: ddab7d08a9118b04aa14fbe79d813b7b, type: 3}
   falseWizardSound: {fileID: 8300000, guid: d2ac1b301e78e9441a1e9c43e7034d0f, type: 3}
   falseWarriorSound: {fileID: 8300000, guid: f427e7806ef9e0c4cae488472d7d7207, type: 3}
   coinAttackSound: {fileID: 8300000, guid: cbdd2400377dc4c4bb12044801011c46, type: 3}
+  introFloatSound: {fileID: 8300000, guid: d5101f9e77522004daf43af34dd68eeb, type: 3}
+  introNoiseSound: {fileID: 8300000, guid: e355766f37e87bc44b1d6c7dd23723bc, type: 3}
 --- !u!1 &4427000222865558877
 GameObject:
   m_ObjectHideFlags: 0

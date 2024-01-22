@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ByleSlimeFight.unity
     guid: 72e27ea48c877f64396952c44b7aebe1
+  - enabled: 1
+    path: Assets/Scenes/KingFight.unity
+    guid: aad4aec7be2940448b44cc17502e3cea
   m_configObjects: {}

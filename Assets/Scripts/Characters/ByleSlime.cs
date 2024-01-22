@@ -13,6 +13,9 @@ public class ByleSlime : Boss
     private int lastAttackPhase = 0; // Last attack phase to prevent same phases from playing repeatedly
     [SerializeField] Transform projectileSpawn; // Projectile spawn point
 
+    // Intro
+    bool introStarted = false; // True if intro coroutine has started
+
     // Jump phase
     private int currentJumpPosition = 1; // Position that the slime was at last time
     private int jumpPosition = 1; // Position that slime is going to jump to
@@ -36,6 +39,7 @@ public class ByleSlime : Boss
     [SerializeField] string walkAnimation;
     [SerializeField] string jumpAnimation;
     [SerializeField] string attackAnimation;
+    [SerializeField] string introAnimation;
 
     // Sound effects
     [SerializeField] AudioClip jumpSound;
@@ -107,7 +111,7 @@ public class ByleSlime : Boss
 
         else if (GameManager.instance.gameState == GameState.Intro)
         {
-            Intro();
+            if (!introStarted) StartCoroutine(Intro());
         }
     }
 
@@ -242,9 +246,29 @@ public class ByleSlime : Boss
         }
     }
 
-    protected override void Intro()
+    IEnumerator Intro()
     {
+        introStarted = true;
+
+        animator.Play(introAnimation);
+        audioSource[1].PlayOneShot(jumpSound);
+
+        yield return new WaitForSeconds(0.9f);
+
+        audioSource[1].PlayOneShot(landSound);
+
+        yield return new WaitForSeconds(0.2f);
+
+        audioSource[1].PlayOneShot(jumpSound);
+
+        yield return new WaitForSeconds(0.9f);
+
+        audioSource[1].PlayOneShot(landSound);
+
+        yield return new WaitForSeconds(1);
+
         GameManager.instance.StartGame();
+        introStarted = false;
     }
 
     public override void Reset()

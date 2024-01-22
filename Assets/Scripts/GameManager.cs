@@ -98,13 +98,21 @@ public class GameManager : MonoBehaviour
                 // Show game over text at 4 seconds into sequence
                 else if (Time.time >= gameOverTime + 4f)
                 {
-                    gameOverUI.SetActive(true);
+                    // Game over text
+                    if (boss.isDead)
+                    {
+                        if (SceneManager.GetActiveScene().buildIndex == 3) gameOverUI.GetComponent<GameOverText>().FinalWinText(); // Final boss win text
+                        else gameOverUI.GetComponent<GameOverText>().WinText(); // Boss win text
+                    }
+                    gameOverUI.SetActive(true); // Display game over screen text
+
                     if (Input.GetKeyDown(KeyCode.Space)) // Reset after game over
                     {
                         // On win
                         if (boss.isDead)
                         {
-                            SceneManager.LoadScene(Mathf.Min(3, SceneManager.GetActiveScene().buildIndex + 1));
+                            if (SceneManager.GetActiveScene().buildIndex == 3) SceneManager.LoadScene(0); // Final boss killed, load main menu
+                            else SceneManager.LoadScene(Mathf.Min(3, SceneManager.GetActiveScene().buildIndex + 1)); // Boss killed, load next boss scene
                         }
 
                         // On lose

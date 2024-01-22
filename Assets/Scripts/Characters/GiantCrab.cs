@@ -231,7 +231,7 @@ public class GiantCrab : Boss
         if (phaseTimer >= 1f) sandPhaseStarted = false; // Reset phase started flag at the end of the phase
     }
 
-    protected override void Intro()
+    protected void Intro()
     {
         animator.Play(introAnimation);
         phaseTimer += Time.deltaTime;

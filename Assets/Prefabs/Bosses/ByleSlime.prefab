@@ -535,6 +535,7 @@ MonoBehaviour:
   walkAnimation: ByleSlimeWalk
   jumpAnimation: ByleSlimeJump
   attackAnimation: ByleSlimeAttack
+  introAnimation: ByleSlimeIntro
   jumpSound: {fileID: 8300000, guid: 48dc45d49a2f239448a4e0fa6bda4939, type: 3}
   landSound: {fileID: 8300000, guid: 3d003dfc2d15ffa409bc96f3ccd7b996, type: 3}
   slimeBallSound: {fileID: 8300000, guid: f6d99bfc330f53a4d8b342326a28df0b, type: 3}
