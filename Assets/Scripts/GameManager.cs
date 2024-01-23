@@ -101,8 +101,7 @@ public class GameManager : MonoBehaviour
                     // Game over text
                     if (boss.isDead)
                     {
-                        if (SceneManager.GetActiveScene().buildIndex == 3) gameOverUI.GetComponent<GameOverText>().FinalWinText(); // Final boss win text
-                        else gameOverUI.GetComponent<GameOverText>().WinText(); // Boss win text
+                        gameOverUI.GetComponent<GameOverText>().WinText(); // Boss win text
                     }
                     gameOverUI.SetActive(true); // Display game over screen text
 
@@ -111,8 +110,8 @@ public class GameManager : MonoBehaviour
                         // On win
                         if (boss.isDead)
                         {
-                            if (SceneManager.GetActiveScene().buildIndex == 3) SceneManager.LoadScene(0); // Final boss killed, load main menu
-                            else SceneManager.LoadScene(Mathf.Min(3, SceneManager.GetActiveScene().buildIndex + 1)); // Boss killed, load next boss scene
+                            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // Boss killed, load next scene
+                            // if this is the last boss the next scene should be the end screen
                         }
 
                         // On lose

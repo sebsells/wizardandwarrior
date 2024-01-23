@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BoomerangProjectile : Projectile
 {
-    Vector3 flyto = Vector3.right * 8.75f;
+    Vector3 flyto = Vector3.right * 9.5f;
     Vector3 startPos;
     float timer;
     bool returning = false;

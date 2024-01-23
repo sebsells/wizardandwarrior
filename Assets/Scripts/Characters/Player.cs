@@ -52,17 +52,23 @@ public class Player : Character
 
     protected override void Start()
     {
+        // Get controls
         keys = playerId == 0 ? GameManager.player0Keys : GameManager.player1Keys;
-        otherPlayer = GameManager.instance.GetOtherPlayer(playerId);
 
+        // Get other player
+        if (GameManager.instance != null) otherPlayer = GameManager.instance.GetOtherPlayer(playerId);
+        else otherPlayer = this; // this is just so the player doesnt freak out when in a scene w/out a gamemanager (the start and end screen)
+
+        // Set resource
         resource = maxResource;
 
+        // Base character start
         base.Start();
     }
 
     protected virtual void Update()
     {
-        if (!isDead && isActive && GameManager.instance.gameState == GameState.Playing)
+        if (!isDead && isActive && (GameManager.instance == null || GameManager.instance.gameState == GameState.Playing))
         {
             Movement();
             Attack();

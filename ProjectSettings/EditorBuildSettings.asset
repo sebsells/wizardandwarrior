@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/Not Bosses/MainMenu.unity
     guid: 82c36181057fd3646b1ee7e17e302496
   - enabled: 1
     path: Assets/Scenes/GiantCrabFight.unity
@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KingFight.unity
     guid: aad4aec7be2940448b44cc17502e3cea
+  - enabled: 1
+    path: Assets/Scenes/Not Bosses/EndScreen.unity
+    guid: a8ee417ca11ff3c47920643b603dc5d9
+  - enabled: 1
+    path: Assets/Scenes/Not Bosses/StartScreen.unity
+    guid: 90ffbec9660ddcb44a60ea336adffaaa
   m_configObjects: {}
